@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/dialog.css" />
+  </head>
+  <body>
+    <button
+      onclick="document.querySelector('dialog[modal-mode=mega]').showModal()"
+    >
+      Open Mega Dialog
+    </button>
+    <button
+      onclick="document.querySelector('dialog[modal-mode=mini]').showModal()"
+    >
+      Open Mini Dialog
+    </button>
+
+    <dialog id="MegaDialog" modal-mode="mega">
+      <form method="dialog">
+        <header>
+          <h3>Dialog title</h3>
+          <button onclick="this.closest('dialog').close('close')">X</button>
+        </header>
+        <article>...</article>
+        <footer>
+          <menu>
+            <button
+              autofocus
+              type="reset"
+              onclick="this.closest('dialog').close('cancel')"
+            >
+              Cancel
+            </button>
+            <button type="submit" value="confirm">Confirm</button>
+          </menu>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="MiniDialog" modal-mode="mini">
+      <form method="dialog">
+        <article>
+          <p>Are you sure you want to remove this user?</p>
+        </article>
+        <footer>
+          <menu>
+            <button
+              autofocus
+              type="reset"
+              onclick="this.closest('dialog').close('cancel')"
+            >
+              Cancel
+            </button>
+            <button type="submit" value="confirm">Confirm</button>
+          </menu>
+        </footer>
+      </form>
+    </dialog>
+  </body>
+  <script src="public/js/dialog.js"></script>
+</html>
