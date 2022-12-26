@@ -11,6 +11,8 @@ dialog {
   position: fixed;
   inset: 0;
   z-index: var(--layer-important);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-6);
 }
 
 dialog:not([open]) {
@@ -30,6 +32,10 @@ dialog:not([open]) {
     border-end-end-radius: 0;
     border-end-start-radius: 0;
   }
+}
+
+dialog::backdrop {
+  transition: backdrop-filter 0.5s ease;
 }
 
 dialog[modal-mode="mega"]::backdrop {
