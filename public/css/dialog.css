@@ -1,1 +1,25 @@
-/*# sourceMappingURL=dialog.css.map */
+dialog {
+  display: grid;
+  background: var(--surface-2);
+  color: var(--text-1);
+  max-inline-size: min(90vw, var(--size-content-3));
+  max-block-size: min(80vh, 100%);
+  max-block-size: min(80dvb, 100%);
+  overflow: hidden;
+  margin: auto;
+  padding: 0;
+  position: fixed;
+  inset: 0;
+  z-index: var(--layer-important);
+}
+
+dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  dialog {
+    border-block-start: var(--border-size-1) solid var(--surface-3);
+  }
+}
