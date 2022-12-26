@@ -41,3 +41,7 @@ dialog::backdrop {
 dialog[modal-mode="mega"]::backdrop {
   backdrop-filter: blur(25px);
 }
+
+html:has(dialog[open][modal-mode="mega"]) {
+  overflow: hidden;
+}
