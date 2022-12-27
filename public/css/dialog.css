@@ -1,3 +1,10 @@
+/* the props */
+@import "https://unpkg.com/open-props";
+
+/* optional imports that use the props */
+@import "https://unpkg.com/open-props/normalize.min.css";
+@import "https://unpkg.com/open-props/buttons.min.css";
+
 dialog {
   display: grid;
   background: var(--surface-2);
@@ -44,4 +51,56 @@ dialog[modal-mode="mega"]::backdrop {
 
 html:has(dialog[open][modal-mode="mega"]) {
   overflow: hidden;
+}
+
+dialog > form {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: start;
+  max-block-size: 80vh;
+  max-block-size: 80dvb;
+}
+
+dialog > form > header {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: space-between;
+  align-items: flex-start;
+  background: var(--surface-2);
+  padding-block: var(--size-3);
+  padding-inline: var(--size-5);
+}
+
+@media (prefers-color-scheme: dark) {
+  dialog > form > header {
+    background: var(--surface-1);
+  }
+}
+
+dialog > form > header > button {
+  border-radius: var(--radius-round);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  place-items: center;
+  stroke: currentColor;
+  stroke-width: 3px;
+}
+
+dialog > form > article {
+  overflow-y: auto;
+  max-block-size: 100%; /* safari */
+  overscroll-behavior-y: contain;
+  display: grid;
+  justify-items: flex-start;
+  gap: var(--size-3);
+  box-shadow: var(--shadow-2);
+  z-index: var(--layer-1);
+  padding-inline: var(--size-5);
+  padding-block: var(--size-3);
+}
+
+@media (prefers-color-scheme: light) {
+  dialog > form > article {
+    background: var(--surface-1);
+  }
 }
