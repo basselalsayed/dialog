@@ -104,3 +104,31 @@ dialog > form > article {
     background: var(--surface-1);
   }
 }
+
+dialog > form > footer {
+  background: var(--surface-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-3);
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-inline: var(--size-5);
+  padding-block: var(--size-3);
+}
+
+@media (prefers-color-scheme: dark) {
+  dialog > form > footer {
+    background: var(--surface-1);
+  }
+}
+
+dialog > form > footer > menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-3);
+  padding-inline-start: 0;
+}
+
+dialog > form > footer > menu:only-child {
+  margin-inline-start: auto;
+}
