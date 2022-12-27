@@ -1,15 +1,15 @@
-const dialogClosingEvent = new Event("closing");
-const dialogClosedEvent = new Event("closed");
-const dialogOpeningEvent = new Event("opening");
-const dialogOpenedEvent = new Event("opened");
-const dialogRemovedEvent = new Event("removed");
+const dialogClosingEvent = new Event('closing');
+const dialogClosedEvent = new Event('closed');
+const dialogOpeningEvent = new Event('opening');
+const dialogOpenedEvent = new Event('opened');
+const dialogRemovedEvent = new Event('removed');
 
 const lightDismiss = ({ target: dialog }) => {
-  if (dialog.nodeName === "DIALOG") dialog.close("dismiss");
+  if (dialog.nodeName === 'DIALOG') dialog.close('dismiss');
 };
 
 const dialogClose = async ({ target: dialog }) => {
-  dialog.setAttribute("inert", "");
+  dialog.setAttribute('inert', '');
   dialog.dispatchEvent(dialogClosingEvent);
 
   await animationsComplete(dialog);
@@ -24,19 +24,19 @@ const animationsComplete = (element) =>
 
 const dialogAttrObserver = new MutationObserver((mutations, observer) => {
   mutations.forEach(async (mutation) => {
-    if (mutation.attributeName === "open") {
+    if (mutation.attributeName === 'open') {
       const dialog = mutation.target;
 
-      const isOpen = dialog.hasAttribute("open");
+      const isOpen = dialog.hasAttribute('open');
 
       if (!isOpen) return;
 
-      dialog.removeAttribute("inert");
+      dialog.removeAttribute('inert');
 
-      const focusTarget = dialog.querySelector("[autofocus]");
+      const focusTarget = dialog.querySelector('[autofocus]');
 
       if (focusTarget) focusTarget.focus();
-      else dialog.querySelector("button").focus();
+      else dialog.querySelector('button').focus();
 
       dialog.dispatchEvent(dialogOpeningEvent);
       await animationsComplete(dialog);
@@ -48,9 +48,9 @@ const dialogAttrObserver = new MutationObserver((mutations, observer) => {
 const dialogDeleteObserver = new MutationObserver((mutations, observer) => {
   mutations.forEach((mutation) => {
     mutation.removedNodes.forEach((removedNode) => {
-      if (removedNode.nodeName === "DIALOG") {
-        removedNode.removeEventListener("click", lightDismiss);
-        removedNode.removeEventListener("close", dialogClose);
+      if (removedNode.nodeName === 'DIALOG') {
+        removedNode.removeEventListener('click', lightDismiss);
+        removedNode.removeEventListener('close', dialogClose);
         removedNode.dispatchEvent(dialogRemovedEvent);
       }
     });
@@ -58,7 +58,7 @@ const dialogDeleteObserver = new MutationObserver((mutations, observer) => {
 });
 
 export default async function (dialog) {
-  dialog.addEventListener("click", lightDismiss);
+  dialog.addEventListener('click', lightDismiss);
 
   dialogAttrObserver.observe(dialog, {
     attributes: true,
@@ -73,5 +73,5 @@ export default async function (dialog) {
   // remove loading attribute
   // prevent page load @keyframes playing
   await animationsComplete(dialog);
-  dialog.removeAttribute("loading");
+  dialog.removeAttribute('loading');
 }
