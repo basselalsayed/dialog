@@ -20,8 +20,26 @@ dialog {
   z-index: var(--layer-important);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-6);
+  transition: opacity 0.5s var(--ease-3);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  dialog {
+    animation: var(--animation-scale-down) forwards;
+    animation-timing-function: var(--ease-squish-3);
+  }
+
+  dialog[open] {
+    animation: var(--animation-slide-in-up) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (max-width: 768px) {
+  dialog:not([open])[modal-mode="mega"] {
+    animation: var(--animation-slide-out-down) forwards;
+    animation-timing-function: var(--ease-squish-2);
+  }
+}
 dialog:not([open]) {
   pointer-events: none;
   opacity: 0;
